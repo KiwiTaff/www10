@@ -63,10 +63,13 @@ function compare(){for (i=0;i<8;i++){
 
 //----------------------------tick function----------------------------//
 
-
 function tick(){
 	$('.wheel').transition({ rotate: '360deg' },4800,'linear');
 	$('#drive').transition({ rotate: '120deg' },4800,'linear');
+	tock();
+}
+
+function tock(){
 	if(a<8){
 		if(rythmn[a]){
 			//console.log(a+' twang');
@@ -79,12 +82,11 @@ function tick(){
 		}
 		a=a+1;
 		
-		tickClock = setTimeout(function(){tick()},600);
+		tickClock = setTimeout(function(){tock()},600);
 	}else{
 		$('#start').fadeIn('slow');
 		answer=0;
 		compare();
-			
 	}
 
 }//end of tick function
@@ -104,6 +106,8 @@ $('#play').click(function(){
 	
 	$('#start').click(function(){
 		a=0;
+		$('.wheel').clearQueue();
+		$('#drive').clearQueue();
 		console.log("playFlag is"+playFlag);
 		beats=setTimeout(function(){tick()},600);
 		$('#start').fadeOut('fast');
@@ -114,7 +118,7 @@ $('#play').click(function(){
 
 	$('#reset').click(function(){
 		//console.log("reset");
-		$('.main').clearQueue;
+		$('.main').clearQueue();
 		a=0;
 		answer=0;
 		playFlag=false;
