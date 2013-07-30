@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <title>Music Machine</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+    </head>
+    <body>
+    
+    	<div class="wrapper">
+    
+            <section class="main clearfix">
+              <div class="wheel clearfix">
+              	<img class="wheel-img" id="pin_03" alt="No-pin" src="img/wheel_03.png">
+                <img class="wheel-img" id="pin_02" alt="No-pin" src="img/wheel_02.png">
+                <img class="wheel-img" id="pin_01" alt="No-pin" src="img/wheel_01.png">
+                <img class="wheel-img" id="pin_04" alt="No-pin" src="img/wheel_04.png">
+                <img class="wheel-img-fixed" id="centre" alt="Centre of the wheel" src="img/wheel_centre.png">
+                <img class="wheel-img" id="pin_00" alt="No-pin" src="img/wheel_00.png">
+                <img class="wheel-img" id="pin_05" alt="No-pin" src="img/wheel_05.png">
+                <img class="wheel-img" id="pin_06" alt="No-pin" src="img/wheel_06.png">
+                <img class="wheel-img" id="pin_07" alt="No-pin" src="img/wheel_07.png">
+              </div>
+              
+              <h1></h1>
+              
+              <div class="blade-module">
+              		<img id="blade" src="img/blade.gif">
+              </div>
+              
+                  <img id="belt-left" src="img/rope.png">
+                  <img id="belt-right" src="img/rope-right.png">
+                  
+              <div class="control">
+                  <img id="drive" alt="drive wheel" src="img/control-wheel.png">
+                 <!--  <img id="lever" alt="lever" src="img/lever.png"> -->
+                  <img id="box" alt="control box" src="img/control-box.jpg">
+                  <button id="start" type="button">start</button>
+                  <button id="reset" type="button">reset</button>
+              </div>
+            
+            <div class="pin"><img src="img/pin.png"></div>
+            
+            <audio id="twang"  preload="auto">
+                <source src="audio/twang.wav" type="audio/wav">
+            </audio>
+             <audio id="clik"  preload="auto">
+                <source src="audio/clik.wav" type="audio/wav">
+            </audio>
+            
+           <div id="counter">
+           		<div id="points"></div>
+           		<button id="play" type="button">play</button>
+           </div>
+          </section><!--end .main-->
+        
+          <footer>
+          </footer>
+        
+    	</div><!--end .wrapper-->
+       <script src="js/vendor/jquery-1.9.0.min.js"></script>
+	     <script src="js/vendor/jquery.easing.min.js"></script>
+       <script src="js/vendor/jquery-ui-1.10.0.min.js"></script>
+       <script src="js/vendor/jquery.transit.min.js"></script>       
+       <script src="js/main.js"></script>     
+    </body>
+</html>
+
+
+
+
+
+
+
+
