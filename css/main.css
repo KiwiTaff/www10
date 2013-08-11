@@ -81,6 +81,17 @@ textarea {
     resize: vertical;
 }
 
+@font-face {
+    font-family: 'icomoon';
+    src:url('../fonts/icomoon.eot');
+    src:url('../fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/icomoon.woff') format('woff'),
+        url('../fonts/icomoon.ttf') format('truetype'),
+        url('../fonts/icomoon.svg#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /* ==========================================================================
    Chrome Frame prompt
    ========================================================================== */
@@ -114,8 +125,6 @@ h1{
 	width:426px;
 }
 
-
-
 .btn{
 	float:left;
 	background-color:#006;
@@ -130,7 +139,35 @@ h1{
 	background-color:#C00;
 }
 
+/*------------------------------instructions---------------------------------*/
 
+.instructions{
+    width:60%;
+    height:60%;
+    background-color:#fff;
+    background-color: rgba(255,255,255,0.95);
+    padding:3% 7%;
+    position: absolute;
+    top:15%;
+    left:15%;
+    z-index: 50;
+}
+
+.instructions h1{
+    margin:0;
+    position:static;
+    height:128px;
+    width:213px;
+    background-size: 100%;
+}
+.instructions .closeBtn{
+    font: 32px/32px 'icomoon';
+    color:#000;
+    text-decoration: none;
+    position:absolute;
+    right:5%;
+    top:6%;
+}
 
 /*--------------------------------da wheel----------------------------------*/
 

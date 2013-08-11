@@ -10,6 +10,8 @@ $(document).ready(function(){
 	var playFlag=false;//flags that the play button has been clicked for use for the compare function
 	var answer=0;//variable to contain the number of correct beats.
 	var score=0;
+	$instructions = $('.instructions');
+	$closeBtn = $('.closeBtn');
 	$('.btn').attr("value","off");// sets all .btn attributes to off
 	//console.log($('.btn').attr("value"));
 	
@@ -17,25 +19,32 @@ $(document).ready(function(){
     audioElm.pause();
 	var audioElm2 = document.getElementById('clik');
     audioElm2.pause();
+
+//----------------------------hide instructions-------------------------------//
+
+  $closeBtn.click(function(e){
+    e.preventDefault(e);
+    $instructions.hide("slow");                                
+  });
 	
-//----------------------------sample tick function----------------------------//
+//---------------------------sample tick function-----------------------------//
+
 function sampTick(){
 	           
 	if(a<8){
 		if(sample[a]){
-			//console.log(a+' twang');
+			console.log(a+' twang');
 			audioElm.currentTime=0;
 			audioElm.play();
 		}else{
-			//console.log(a);
+			console.log(a);
 			audioElm2.currentTime=0;
 			audioElm2.play();
 		}
 		a=a+1;
-		sampClock = setTimeout(function(){sampTick()},600);
+		setTimeout(function(){sampTick()},600);
 	}else{
 		$('#play').fadeIn('slow');
-		
 	}
 }//end of sample tick function
 
@@ -106,8 +115,11 @@ $('#play').click(function(){
 	
 	$('#start').click(function(){
 		a=0;
-		$('.wheel').clearQueue();
-		$('#drive').clearQueue();
+		$('#drive, .wheel').css("-webkit-transform", "none");
+		$('#drive, .wheel').css("-moz-transform", "none");
+		$('#drive, .wheel').css("-ms-transform", "none");
+		$('#drive, .wheel').css("transform", "none");
+		
 		console.log("playFlag is"+playFlag);
 		beats=setTimeout(function(){tick()},600);
 		$('#start').fadeOut('fast');
@@ -118,7 +130,8 @@ $('#play').click(function(){
 
 	$('#reset').click(function(){
 		//console.log("reset");
-		$('.main').clearQueue();
+		$('.wheel').clearQueue();
+		$('#drive').clearQueue();
 		a=0;
 		answer=0;
 		playFlag=false;
@@ -164,6 +177,7 @@ $(".wheel-img").droppable({
 	};
 	}
 });
+
 
 //--------------------------junk-----------------------------------//
 
