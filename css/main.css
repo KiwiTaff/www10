@@ -216,7 +216,7 @@ body{
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0820a6', endColorstr='#4e5ab7',GradientType=0 );
 }
 
-
+.bkgnd{display:none;}
 /* ==========================================================================
    Author's custom styles
 

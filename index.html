@@ -4,6 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Music Machine</title>
 	<meta name="description" content="Music machine educational game - learn to listen to a rhythmn and repeat it."/>
+	<script type="text/javascript">
+    if(document.images)
+        (new Image()).src="img/background.jpg";
+	</script>
 	<link rel="stylesheet" href="css/main.css" />
 	<script src="js/vendor/jquery-1.9.0.min.js"></script>
 	<script src="js/jpreloader.js"></script>
@@ -11,7 +15,38 @@
 </head>
 
 <body>
+		<!-- This section is for Splash Screen -->
+		<section id="jSplash">
+			<section id="logo_page" class="selected">
+				<div class="logo">
+					<h1>Music Machine</h1>
+				</div>
+			</section>
+			<section>
+				<div class="how-to">
+					<h2>How to Play</h2>
+					<h3>Freeplay</h3>
+			        <p>Drag and drop the pins onto the wheel</p>
+			        <p>Hit START to hear the machine play.</p>
+			        <p>CLEAR to start again</p>
+			    </div>
+			</section>
+			<section>
+				<div class="how-to">
+					<h2>How to Play</h2>
+					<h3>Think you know how it all works?</h3>
+			        <p>TEST YOUR SKILL!</p>
+			        <p>Click LISTEN to hear a rhythmn</p> 
+			        <p>use the pins on the wheel to match it</p>
+			    </div>
+			</section>
+
+		</section>
+		<!-- End of Splash Screen -->
+
 		<div class="wrapper">
+			
+			<h1></h1>
 			<div class="main clearfix">
 				<div class="wheel clearfix">
 					<img class="wheel-img" id="pin_03" alt="No-pin" src="img/wheel_03.png">
@@ -25,7 +60,7 @@
 					<img class="wheel-img" id="pin_07" alt="No-pin" src="img/wheel_07.png">
 				</div>
 
-				<h1></h1>
+				
 
 				<div class="blade-module">
 					<img id="blade" src="img/blade.gif">
@@ -58,34 +93,7 @@
           	</div><!--end .main-->
 		</div>
 
-		<!-- This section is for Splash Screen -->
-		<section id="jSplash">
-			<section id="logo_page" class="selected">
-				<div class="logo">
-					<h1>Music Machine</h1>
-				</div>
-			</section>
-			<section>
-				<div class="how-to">
-					<h2>How to Play</h2>
-					<h3>Freeplay</h3>
-			        <p>Drag and drop the pins onto the wheel</p>
-			        <p>Hit START to hear the machine play.</p>
-			        <p>CLEAR to start again</p>
-			    </div>
-			</section>
-			<section>
-				<div class="how-to">
-					<h2>How to Play</h2>
-					<h3>Think you know how it all works?</h3>
-			        <p>TEST YOUR SKILL!</p>
-			        <p>Click LISTEN to hear a rhythmn</p> 
-			        <p>use the pins on the wheel to match it</p>
-			    </div>
-			</section>
 
-		</section>
-		<!-- End of Splash Screen -->
 
 	
 	<script src="js/vendor/jquery.easing.min.js"></script>
