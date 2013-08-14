@@ -92,6 +92,16 @@ textarea {
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'backtocoolmedium';
+    src: url('../fonts/backtocool-webfont.eot');
+    src: url('../fonts/backtocool-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/backtocool-webfont.woff') format('woff'),
+         url('../fonts/backtocool-webfont.ttf') format('truetype'),
+         url('../fonts/backtocool-webfont.svg#backtocoolmedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
 /* ==========================================================================
    Chrome Frame prompt
    ========================================================================== */
@@ -104,9 +114,114 @@ textarea {
 }
 
 /* ==========================================================================
+   Preloader
+   ========================================================================== */
+
+body{
+    display:none;
+}
+
+#jpreSlide .logo {
+    background-image: url(../img/name-panel.png);
+    width:426px;
+    height:257px;
+}
+
+#jpreOverlay {
+    background-image:url(../img/background.jpg); 
+    background-repeat: no-repeat;
+    background-size:100%;
+}
+
+#jpreSlide{
+    /*font-size:22px;*/
+    text-align: center;
+    color:#eee;
+    width:40%;
+}
+
+.how-to{
+    background-color: #2438a6;
+    background-color: rgba(36,56,166,0.8);
+    width:90%;
+    padding:5%;
+    border:1px solid #2438a6;
+    
+    border-radius:30px;
+    -moz-border-radius:30px;
+    -webkit-border-radius:30px;
+}
+
+#jpreSlide h1{
+    display:none;
+}
+
+#jpreSlide h2{
+    font:64px/16px 'backtocoolmedium';
+}
+
+#jpreSlide h3{
+    font:48px/40px 'backtocoolmedium';
+    text-transform: uppercase;
+    color:#f2bf46;
+}
+
+#jpreSlide p{
+    font:36px/16px 'backtocoolmedium';
+}
+
+#jpreLoader {
+    width: 75%;
+    height: 4px;
+}
+
+#jpreBar {
+    width: 100%;
+    height: 4px;
+    background: rgb(240, 240, 240);
+}
+
+#jprePercentage {
+    color:#eee;
+    font-family:"Trebuchet MS",Arial,Helvetica,sans-serif;
+    font-weight:bold;
+    text-align:center;
+    top:-50%;
+}
+
+#jpreButton{
+    padding:3px 10px;
+    cursor:pointer;
+    font-weight:bold;
+    text-transform: uppercase;
+    line-height:45px;
+    text-align:center;
+    height:45px;
+    width:150px;
+    margin:20px auto;
+    color:#fff;
+    border:1px solid #2438a6;
+    
+    border-radius:30px;
+    -moz-border-radius:30px;
+    -webkit-border-radius:30px;
+    
+    background-color: #0820a6;
+    background-image: -moz-linear-gradient(top, #0820a6 0%, #4e5ab7 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#23a6ed), color-stop(100%,#1275aa));
+    background-image: -webkit-linear-gradient(top, #0820a6 0%,#4e5ab7 100%);
+    background-image: -o-linear-gradient(top, #0820a6 0%,#4e5ab7 100%);
+    background-image: -ms-linear-gradient(top, #0820a6 0%,#4e5ab7 100%);
+    background-image: linear-gradient(to bottom, #0820a6 0%,#4e5ab7 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0820a6', endColorstr='#4e5ab7',GradientType=0 );
+}
+
+
+/* ==========================================================================
    Author's custom styles
 
    ========================================================================== */
+
 .wrapper{
 	background-image:url(../img/background.jpg);
 	width:1200px;
@@ -125,49 +240,6 @@ h1{
 	width:426px;
 }
 
-.btn{
-	float:left;
-	background-color:#006;
-	height: 35px;
-	width:80px;
-	border:1px solid #036;
-	-moz-border-radius: 10px;
-	border-radius: 10px;	
-}
-
-.btnOn{
-	background-color:#C00;
-}
-
-/*------------------------------instructions---------------------------------*/
-
-.instructions{
-    width:60%;
-    height:60%;
-    background-color:#fff;
-    background-color: rgba(255,255,255,0.95);
-    padding:3% 7%;
-    position: absolute;
-    top:15%;
-    left:15%;
-    z-index: 50;
-}
-
-.instructions h1{
-    margin:0;
-    position:static;
-    height:128px;
-    width:213px;
-    background-size: 100%;
-}
-.instructions .closeBtn{
-    font: 32px/32px 'icomoon';
-    color:#000;
-    text-decoration: none;
-    position:absolute;
-    right:5%;
-    top:6%;
-}
 
 /*--------------------------------da wheel----------------------------------*/
 
@@ -175,8 +247,7 @@ h1{
 	position:relative;
 	height:440px;
 	width:440px;
-	z-index:20;
-	
+	z-index:20;	
 }
 
 .wheel-img, .wheel-img-fixed{
@@ -192,7 +263,6 @@ h1{
 #pin_05{left:0px;top:288px;}
 #pin_06{left:149px;top:288px;}
 #pin_07{left:286px;top:288px;}
-
 
 .pin{position:absolute;left:10px;bottom:44px; z-index:40}
 
@@ -255,13 +325,18 @@ h1{
 }	
 
 /*----------------------------------buttons------------------------------------*/
-#start, #reset, #play, #hint{
+button{
     background-color:#f5dc8b;
     position:absolute;
+    text-transform: uppercase;
     width:80px;
     height:40px;
     border-radius:10px;
     z-index:50;
+}
+
+button:hover{
+    background-color:#f2bf46;
 }
 
 #start{
@@ -274,7 +349,7 @@ h1{
     bottom:55px;
 }
 
-#play{
+#listen{
     left:50px;
     bottom:50px;
 }
@@ -304,7 +379,7 @@ h1{
 	z-index:60;
 }
 	
-#play{
+#listen{
 	background-color:#f5dc8b;
 	position:absolute;
 	left:50px;

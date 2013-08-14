@@ -1,15 +1,63 @@
+rythmn=[false,false,false,false,false,false,false,false];
+
 $(document).ready(function(){
-	//alert('at least it loads');
-	var beat;
-	var beats;
-	var sampClock;
-	var tickClock;
-	var i;
-	var a=0;
+
+	//----------------------------preloader-------------------------------//
+	var timer;	//timer for splash screen
+	
+	//calling jPreLoader
+	$('body').jpreLoader({
+		splashID: "#jSplash",
+		loaderVPos: '80%',
+		autoClose: false,
+		closeBtnText: "Let's Play!",
+		splashFunction: function() {  
+			//passing Splash Screen script to jPreLoader
+			$('#jSplash').children('section').not('.selected').hide();
+			$('#jSplash').hide().fadeIn(800);
+			
+			timer = setInterval(function() {
+				splashRotator();
+			}, 8000);
+		}
+	}, function() {	//callback function
+		clearInterval(timer);
+		$('#footer')
+		.animate({"bottom":0}, 500);
+		$('#header')
+		.animate({"top":0}, 800, function() {
+			$('#wrapper').fadeIn(1000);
+		});
+	});
+	
+	//create splash screen animation
+	function splashRotator(){
+		var cur = $('#jSplash').children('.selected');
+		var next = $(cur).next();
+		
+		if($(next).length != 0) {
+			$(next).addClass('selected');
+		} else {
+			$('#jSplash').children('section:first-child').addClass('selected');
+			next = $('#jSplash').children('section:first-child');
+		}
+			
+		$(cur).removeClass('selected').fadeOut(800, function() {
+			$(next).fadeIn(800);
+		});
+	}
+	
+	var beat
+	, 	beats
+	, 	sampClock
+	, 	tickClock
+	, 	i
+	, 	a=0
+	, 	listenFlag=false//flags that the listen button has been clicked for use for the compare function
+	, 	answer=0//variable to contain the number of correct beats.
+	, 	score=0
+	;
 	var hint=["white", "white", "white", "white", "white", "white", "white", "white"]
-	var playFlag=false;//flags that the play button has been clicked for use for the compare function
-	var answer=0;//variable to contain the number of correct beats.
-	var score=0;
 	$instructions = $('.instructions');
 	$closeBtn = $('.closeBtn');
 	$('.btn').attr("value","off");// sets all .btn attributes to off
@@ -44,30 +92,38 @@ function sampTick(){
 		a=a+1;
 		setTimeout(function(){sampTick()},600);
 	}else{
-		$('#play').fadeIn('slow');
+		$('#listen').fadeIn('slow');
 	}
 }//end of sample tick function
 
 //-----------------compare sample[] to rhythmn[]----------------------//
-function compare(){for (i=0;i<8;i++){
-	playFlag=false;
+function compare(){
+	listenFlag=false;
 	console.log(rythmn);
-	if(sample[i]===rythmn[i]){
-			answer++;
-			//console.log(i+" "+sample[i]+" "+rythmn[i]+" "+answer);
-			hint[i]="green";
-		}else if((rythmn[i]===true)&&(sample[i]===false)){
-			hint[i]="red";
-			//console.log(i+" "+sample[i]+" "+rythmn[i]+" "+answer+" logic says wrong");
+	for (i=0;i<8;i++){
+
+		if(rythmn[i]){
+			if(sample[i]){
+				hint[i]="green";
+				console.log("for beat "+i+" guess is correct" );
+				answer++;
+			}else{
+				hint[i]="red";
+				console.log("for beat "+i+" guess is wrong" );
+			}
 		}else{
-			//console.log(i+" "+sample[i]+" "+rythmn[i]+" "+answer+" logic says wrong");
-		};
-		if(answer===8){
-			alert('correct');
-			score=score+20;
-			$('#points').html(score);
+			if(!sample[i]){
+				answer++;
+			}
 		}
 	};
+	if(answer===8){
+		alert('correct');
+		score=score+20;
+		$('#points').html(score);
+	}else{
+		alert('not quite guess again');
+	}
 };
 
 //----------------------------tick function----------------------------//
@@ -100,14 +156,14 @@ function tock(){
 
 }//end of tick function
 
-//-----------------when the play button is clicked----------------------//
+//-----------------when the listen button is clicked----------------------//
 var sample=[true,false,false,false,true,false,false,false];
-$('#play').click(function(){
+$('#listen').click(function(){
 	alert('listen and match the rythmn');
-	playFlag=true;
+	listenFlag=true;
 	setTimeout(function(){sampTick()},600);
-	$('#play').fadeOut('fast');
-	console.log("playBtn: playFlag is"+playFlag);
+	$('#listen').fadeOut('fast');
+	console.log("listenBtn: listenFlag is"+listenFlag);
 });
 
 
@@ -119,27 +175,25 @@ $('#play').click(function(){
 		$('#drive, .wheel').css("-moz-transform", "none");
 		$('#drive, .wheel').css("-ms-transform", "none");
 		$('#drive, .wheel').css("transform", "none");
-		
-		console.log("playFlag is"+playFlag);
+		console.log(rythmn);
+		console.log("listenFlag is"+listenFlag);
 		beats=setTimeout(function(){tick()},600);
 		$('#start').fadeOut('fast');
 		//alert(beats);
-	});//end of play button function
+	});//end of listen button function
 
 //-----------------when the reset button is clicked----------------------//
 
 	$('#reset').click(function(){
-		//console.log("reset");
-		$('.wheel').clearQueue();
-		$('#drive').clearQueue();
+		
 		a=0;
 		answer=0;
-		playFlag=false;
+		listenFlag=false;
 		rythmn=[false,false,false,false,false,false,false,false];
 		for (var i = 7; i >= 0; i--) {
 			var newSrc="img/wheel_0"+i+".png";
 			tile="#pin_0"+i;
-			$(tile).attr("src",newSrc);
+			$(tile).attr("src",newSrc).attr("alt","No-pin");
 		};
 
 	});
@@ -148,33 +202,24 @@ $('#play').click(function(){
 
 
 //--------------------------drag and drop------------------------------//
-$(".pin").draggable({revert:true, revertDuration:0, snap:".wheel-img", snapMode: "inner"});
-	var rythmn=[false,false,false,false,false,false,false,false];
+$(".pin").draggable({revert:true, revertDuration:20, snap:".wheel-img", snapMode: "inner"});
+	
 
 $(".wheel-img").droppable({
 
 	drop:function(event, ui){
 																	//ui is the dropped object
 		var newSrc="img/wheel_n_"+$(this).attr('id')+".png";
-	
-																	//console.log(newSrc);
 		$(this).attr('src',newSrc);
 																	//ui.draggable( "option", "revert", false).draggable("disable");
-																	//console.log($(this).attr('src'));
-			beatString=$(this).attr('id');
-			beat = beatString.substr(beatString.length - 1);
-																	//console.log(beat);
-																	//console.log($(this).attr("value"));
-	if($(this).attr('alt')==="No-pin"){
-		$(this).attr("alt","pinned");
-		
-		rythmn[beat]=true;					//adds the beat to the rythmn
-		//console.log(rythmn[beat]);
-	}else{
-		$(this).attr("alt","No-pin");
-		console.log($(this).attr("value"));
-		rythmn[beat]=false;					//removes beat from the rythmn
-	};
+		beatString=$(this).attr('id');
+		beat = beatString.substr(beatString.length - 1);
+
+		if($(this).attr('alt')==="No-pin"){
+			$(this).attr("alt","pinned");
+			rythmn[beat]=true;					//adds the beat to the rythmn
+			console.log(rythmn[beat]);
+		}
 	}
 });
 
