@@ -128,9 +128,10 @@ body{
 }
 
 #jpreOverlay {
-    background-image:url(../img/background.jpg); 
+    background-color: #67ccff;
+    /*background-image:url(../img/background.jpg); 
     background-repeat: no-repeat;
-    background-size:100%;
+    background-size:100%;*/
 }
 
 #jpreSlide{
